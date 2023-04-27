@@ -7,7 +7,14 @@ const blogs = require('../data/blogs.js')
 
 
 router.get('/',(req,res)=>{
-    res.send('<h1>Syed burhan uddibn</h1>')
+    // res.send('<h1>Syed burhan uddibn</h1>')
+    res.render('home')
+})
+router.get('/blog',(req,res)=>{
+    // res.send('<h1>Syed burhan uddibn</h1>')
+    res.render('homeblog',{
+        blog:blogs
+    })
 })
 router.get('/about',(req,res)=>{
     res.send('<h1>this is about page</h1>')
@@ -20,10 +27,14 @@ router.get('/blog/:slugs',(req,res)=>{
     // })
     // res.send('<h1>this is about page</h1>')
    myBlogs = blogs.filter((e)=>{
-    return e.slugs === req.params.slugs
+    return e.slugs == req.params.slugs
    })
    console.log(myBlogs)
-    res.sendFile(path.join(__dirname,'../templates/index.html'))
+    // res.sendFile(path.join(__dirname,'../views/index.html'))
+    res.render('blogcontent',{
+        title:myBlogs[0].title,
+        content:myBlogs[0].content
+    })
 })
 
 module.exports = router;
