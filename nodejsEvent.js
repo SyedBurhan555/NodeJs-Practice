@@ -1,5 +1,4 @@
 const EventEmitter = require("events");
-const { listeners } = require("process");
 
 const myEmitter = new EventEmitter();
 
